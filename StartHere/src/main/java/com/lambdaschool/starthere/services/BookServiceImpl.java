@@ -67,12 +67,10 @@ public class BookServiceImpl implements BookService
     {
         Book newBook = new Book();
 
-        if (book.getBooktitle() != null)
-        {
-            newBook.setBooktitle(book.getBooktitle());
-            newBook.setIsbn(book.getIsbn());
-            newBook.setCopy(book.getCopy());
-        }
+
+        newBook.setBooktitle(book.getBooktitle());
+        newBook.setIsbn(book.getIsbn());
+        newBook.setCopy(book.getCopy());
 
         for (Author a : book.getAuthors())
         {
@@ -85,6 +83,18 @@ public class BookServiceImpl implements BookService
     @Override
     public Book update(Book book, long id)
     {
-        return null;
+        Book newBook = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+
+        if (book.getBooktitle() != null)
+        {
+            newBook.setBooktitle(book.getBooktitle());
+            newBook.setIsbn(book.getIsbn());
+            newBook.setCopy(book.getCopy());
+        }
+        for (Author a : book.getAuthors())
+        {
+            newBook.getAuthors().add(a);
+        }
+        return bookRepository.save(newBook);
     }
 }
