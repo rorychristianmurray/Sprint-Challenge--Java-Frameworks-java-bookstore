@@ -75,10 +75,10 @@ public class DataController
         Author author = authorService.findAuthorById(authorid);
 
         // add the author of the book to the book
-        author.getBooks().add(book);
-        authorService.save(author);
-//        book.getAuthors().add(author);
-//        Book b = bookService.save(book);
+//        author.getBooks().add(book);
+//        authorService.save(author);
+        book.getAuthors().add(author);
+        Book b = bookService.save(book);
 
         return new ResponseEntity<>(HttpStatus.OK);
 

@@ -50,6 +50,14 @@ public class BookServiceImpl implements BookService
     @Override
     public void delete(long id)
     {
+        if (bookRepository.findById(id).isPresent())
+        {
+            bookRepository.deleteById(id);
+        }
+        else
+        {
+            throw new ResourceNotFoundException(Long.toString(id));
+        }
 
     }
 
