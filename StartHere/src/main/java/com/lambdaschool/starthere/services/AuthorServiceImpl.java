@@ -51,7 +51,6 @@ public class AuthorServiceImpl implements AuthorService
     @Override
     public void delete(long id)
     {
-        return null;
 
     }
 
@@ -67,7 +66,7 @@ public class AuthorServiceImpl implements AuthorService
         {
             newAuthor.getBooks().add(new Book(b.getBooktitle(), b.getIsbn(), b.getCopy()));
         }
-        return authorRepository.save(newAuthor)
+        return authorRepository.save(newAuthor);
 
     }
 
