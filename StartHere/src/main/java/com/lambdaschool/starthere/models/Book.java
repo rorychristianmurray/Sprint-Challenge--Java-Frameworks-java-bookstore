@@ -27,7 +27,7 @@ public class Book extends Auditable
     @ApiModelProperty(name = "isbn", value = "ISBN number for book", required = true, example = "9788489367012")
     private String isbn;
 
-    @ApiModelProperty(name = "copy", value = "copyright date for the book", required = true, example = 1977);
+    @ApiModelProperty(name = "copy", value = "copyright date for the book", required = true, example = "1977")
     private int copy;
 
     //many:many books:authors
