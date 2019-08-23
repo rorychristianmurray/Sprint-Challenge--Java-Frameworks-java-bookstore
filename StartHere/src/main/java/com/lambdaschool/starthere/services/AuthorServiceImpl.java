@@ -2,6 +2,7 @@ package com.lambdaschool.starthere.services;
 
 import com.lambdaschool.starthere.exceptions.ResourceNotFoundException;
 import com.lambdaschool.starthere.models.Author;
+import com.lambdaschool.starthere.models.Book;
 import com.lambdaschool.starthere.repository.AuthorRepository;
 import com.lambdaschool.starthere.repository.RoleRepository;
 import com.lambdaschool.starthere.repository.UserRepository;
@@ -50,13 +51,24 @@ public class AuthorServiceImpl implements AuthorService
     @Override
     public void delete(long id)
     {
+        return null;
 
     }
 
     @Override
     public Author save(Author author)
     {
-        return null;
+        Author newAuthor = new Author();
+
+        newAuthor.setLastname(author.getLastname());
+        newAuthor.setFirstname(author.getFirstname());
+
+        for (Book b : author.getBooks())
+        {
+            newAuthor.getBooks().add(new Book(b.getBooktitle(), b.getIsbn(), b.getCopy()));
+        }
+        return authorRepository.save(newAuthor)
+
     }
 
     @Override
