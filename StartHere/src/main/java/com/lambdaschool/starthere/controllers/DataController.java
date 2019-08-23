@@ -77,7 +77,7 @@ public class DataController
         // add the author of the book to the book
 
         book.getAuthors().add(author);
-//        bookService.update(book, bookid);
+        bookService.update(book, bookid);
 
         return new ResponseEntity<>(book, HttpStatus.OK);
 

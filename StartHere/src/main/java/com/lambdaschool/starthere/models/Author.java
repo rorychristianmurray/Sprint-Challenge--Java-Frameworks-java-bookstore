@@ -10,7 +10,6 @@ import java.util.List;
 
 // Add Swagger custom documentation
 @ApiModel(value = "authors", description = "Authors of the books")
-
 @Entity
 @Table(name = "authors")
 public class Author extends Auditable
