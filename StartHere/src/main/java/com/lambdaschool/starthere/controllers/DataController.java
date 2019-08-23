@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,7 @@ public class DataController
     // map the PUT /data/books/{id} endpoint
     // updates a books info (Title, Copyright, ISBN)
     // but does NOT have to assign authors to the books.
+    @PreAuthorize("hasRole('ROLE_DATA') or hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "Updates a book by id")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Book Updated", response = void.class),
@@ -59,6 +61,7 @@ public class DataController
     // map the POST /data/books/{bookid}/authors/{authorid} endpoint
     // assigns a book already in the system (bookid) to an author already
     // in the system (authorid) (see how roles are handled for users)
+    @PreAuthorize("hasRole('ROLE_DATA') or hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "Assigns a book by id to an author by id")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Book Assigned", response = void.class),
@@ -88,6 +91,7 @@ public class DataController
     // map the DELETE /data/books/{id} endpoint
     // deletes a book and the book author combinations
     // but does not delete the author records
+    @PreAuthorize("hasRole('ROLE_DATA') or hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "Deletes a book by id")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Book deleted", response = void.class),
