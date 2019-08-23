@@ -1,6 +1,7 @@
 package com.lambdaschool.starthere.services;
 
 import com.lambdaschool.starthere.exceptions.ResourceNotFoundException;
+import com.lambdaschool.starthere.models.Author;
 import com.lambdaschool.starthere.models.Book;
 import com.lambdaschool.starthere.repository.BookRepository;
 import com.lambdaschool.starthere.repository.RoleRepository;
@@ -64,7 +65,21 @@ public class BookServiceImpl implements BookService
     @Override
     public Book save(Book book)
     {
-        return null;
+        Book newBook = new Book();
+
+        if (book.getBooktitle() != null)
+        {
+            newBook.setBooktitle(book.getBooktitle());
+            newBook.setIsbn(book.getIsbn());
+            newBook.setCopy(book.getCopy());
+        }
+
+        for (Author a : book.getAuthors())
+        {
+            newBook.getAuthors().add(a);
+        }
+
+        return bookRepository.save(newBook);
     }
 
     @Override
