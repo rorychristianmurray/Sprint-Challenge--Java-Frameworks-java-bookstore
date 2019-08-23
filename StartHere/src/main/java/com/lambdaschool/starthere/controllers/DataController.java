@@ -27,7 +27,7 @@ public class DataController
 
     // set-up endpoint logging
 
-    private static final Logger logger = LoggerFactory.getLogger(BooksController.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataController.class);
 
     // Autowire in the BookService class, giving us access to methods
     @Autowired
@@ -49,6 +49,8 @@ public class DataController
     @PutMapping(value = "/books/{id}", produces = {"application/json"}, consumes = {"application/json"})
     public ResponseEntity<?> updateBook(@RequestBody Book book, @ApiParam(name = "bookid", required = true) @PathVariable long id)
     {
+//        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
         bookService.update(book, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
